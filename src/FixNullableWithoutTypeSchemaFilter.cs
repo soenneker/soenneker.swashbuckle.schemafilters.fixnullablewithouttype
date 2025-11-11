@@ -1,4 +1,4 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Soenneker.Swashbuckle.SchemaFilters.FixNullableWithoutType;
@@ -8,11 +8,11 @@ namespace Soenneker.Swashbuckle.SchemaFilters.FixNullableWithoutType;
 /// </summary>
 public sealed class FixNullableWithoutTypeSchemaFilter : ISchemaFilter
 {
-    public void Apply(OpenApiSchema schema, SchemaFilterContext context)
+    public void Apply(IOpenApiSchema schema, SchemaFilterContext context)
     {
-        if (schema is {Nullable: true, Type: null})
-        {
-            schema.Type = "object"; // default fallback
-        }
+        var mutable = (OpenApiSchema)schema;
+
+        if (mutable.Type == JsonSchemaType.Null)
+            mutable.Type = JsonSchemaType.Object; // default fallback
     }
 }
