@@ -15,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\Soenneker.Swashbuckle.SchemaFilters.FixNullableWithoutType.csproj" />
+        <ProjectReference Include="..\..\src\Soenneker.Swashbuckle.SchemaFilters.FixNullableWithoutType\Soenneker.Swashbuckle.SchemaFilters.FixNullableWithoutType.csproj" />
     </ItemGroup>
 
     <ItemGroup>

@@ -4,10 +4,11 @@
   </Folder>
   <Folder Name="/.github/workflows/">
     <File Path=".github/workflows/build-and-test.yml" />
+    <File Path=".github/workflows/codeql.yml" />
     <File Path=".github/workflows/publish-package.yml" />
   </Folder>
   <Folder Name="/src/">
-    <Project Path="src/Soenneker.Swashbuckle.SchemaFilters.FixNullableWithoutType.csproj" />
+    <Project Path="src/Soenneker.Swashbuckle.SchemaFilters.FixNullableWithoutType/Soenneker.Swashbuckle.SchemaFilters.FixNullableWithoutType.csproj" />
   </Folder>
   <Folder Name="/test/">
     <Project Path="test/Soenneker.Swashbuckle.SchemaFilters.FixNullableWithoutType.Tests/Soenneker.Swashbuckle.SchemaFilters.FixNullableWithoutType.Tests.csproj" />
