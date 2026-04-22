@@ -1,11 +1,10 @@
-﻿using Soenneker.Tests.Unit;
-using Xunit;
+using Soenneker.Tests.Unit;
 
 namespace Soenneker.Swashbuckle.SchemaFilters.FixNullableWithoutType.Tests;
 
 public sealed class FixNullableWithoutTypeSchemaFilterTests : UnitTest
 {
-    [Fact]
+    [Test]
     public void Default()
     {
 
