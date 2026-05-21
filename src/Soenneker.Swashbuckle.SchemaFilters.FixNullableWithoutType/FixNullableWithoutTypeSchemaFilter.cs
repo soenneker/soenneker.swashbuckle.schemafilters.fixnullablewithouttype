@@ -10,7 +10,8 @@ public sealed class FixNullableWithoutTypeSchemaFilter : ISchemaFilter
 {
     public void Apply(IOpenApiSchema schema, SchemaFilterContext context)
     {
-        var mutable = (OpenApiSchema)schema;
+        if (schema is not OpenApiSchema mutable)
+            return;
 
         if (mutable.Type == JsonSchemaType.Null)
             mutable.Type = JsonSchemaType.Object; // default fallback

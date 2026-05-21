@@ -1,4 +1,6 @@
+using Microsoft.OpenApi;
 using Soenneker.Tests.Unit;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Soenneker.Swashbuckle.SchemaFilters.FixNullableWithoutType.Tests;
 
@@ -8,5 +10,15 @@ public sealed class FixNullableWithoutTypeSchemaFilterTests : UnitTest
     public void Default()
     {
 
+    }
+
+    [Test]
+    public void Apply_should_ignore_schema_references()
+    {
+        var filter = new FixNullableWithoutTypeSchemaFilter();
+        var schema = new OpenApiSchemaReference("RequestDataOptions", new OpenApiDocument(), "3.0");
+        var context = new SchemaFilterContext(typeof(string), null!, new SchemaRepository(), null, null);
+
+        filter.Apply(schema, context);
     }
 }
