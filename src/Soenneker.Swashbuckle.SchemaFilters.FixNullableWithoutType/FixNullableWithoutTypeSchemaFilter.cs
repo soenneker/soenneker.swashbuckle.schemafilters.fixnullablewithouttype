@@ -8,6 +8,11 @@ namespace Soenneker.Swashbuckle.SchemaFilters.FixNullableWithoutType;
 /// </summary>
 public sealed class FixNullableWithoutTypeSchemaFilter : ISchemaFilter
 {
+    /// <summary>
+    /// Executes the apply operation.
+    /// </summary>
+    /// <param name="schema">The schema.</param>
+    /// <param name="context">The context.</param>
     public void Apply(IOpenApiSchema schema, SchemaFilterContext context)
     {
         if (schema is not OpenApiSchema mutable)
