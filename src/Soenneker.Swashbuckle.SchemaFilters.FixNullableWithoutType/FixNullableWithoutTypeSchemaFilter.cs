@@ -9,16 +9,16 @@ namespace Soenneker.Swashbuckle.SchemaFilters.FixNullableWithoutType;
 public sealed class FixNullableWithoutTypeSchemaFilter : ISchemaFilter
 {
     /// <summary>
-    /// Applies fix Nullable Without Type Schema Filter for the Fix Nullable Without Type Schema Filter.
+    /// Replaces a null-only placeholder type with an object-or-null schema.
     /// </summary>
     /// <param name="schema">Schema to read or generate.</param>
-    /// <param name="context">HTTP context containing the Authorization header.</param>
+    /// <param name="context">Context for the schema being generated.</param>
     public void Apply(IOpenApiSchema schema, SchemaFilterContext context)
     {
         if (schema is not OpenApiSchema mutable)
             return;
 
         if (mutable.Type == JsonSchemaType.Null)
-            mutable.Type = JsonSchemaType.Object; // default fallback
+            mutable.Type = JsonSchemaType.Object | JsonSchemaType.Null;
     }
 }

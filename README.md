@@ -5,14 +5,33 @@
 
 # Soenneker.Swashbuckle.SchemaFilters.FixNullableWithoutType
 
-A schema filter sets the type to object for any OpenAPI schema marked as nullable but lacking a defined type.
+Repairs null-only OpenAPI schema placeholders by giving them an `object | null` type.
 
-## Install
+## Installation
 
 ```bash
 dotnet add package Soenneker.Swashbuckle.SchemaFilters.FixNullableWithoutType
 ```
 
-## What you get
+## Registration
 
-- `FixNullableWithoutTypeSchemaFilter` — A schema filter sets the type to object for any OpenAPI schema marked as nullable but lacking a defined type.
+```csharp
+using Soenneker.Swashbuckle.SchemaFilters.FixNullableWithoutType;
+
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SchemaFilter<FixNullableWithoutTypeSchemaFilter>();
+});
+```
+
+The filter acts only when Swashbuckle produces a mutable schema whose type is exactly `null`. It changes that type to the OpenAPI 3.1 union of `object` and `null`:
+
+```yaml
+type:
+  - object
+  - "null"
+```
+
+Schemas that already have a concrete type, including existing nullable unions, are left unchanged. Schema references are also left unchanged rather than being replaced or resolved by this filter.
+
+Use this as a targeted compatibility filter when generated documents contain null-only schemas that downstream validators or client generators cannot use. It does not affect runtime model binding or JSON serialization.
