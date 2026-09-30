@@ -24,7 +24,7 @@ public sealed class FixNullableWithoutTypeSchemaFilterTests : UnitTest
     }
 
     [Test]
-    public async Task Apply_should_preserve_nullability_when_adding_object_type()
+    public async ValueTask Apply_should_preserve_nullability_when_adding_object_type()
     {
         var filter = new FixNullableWithoutTypeSchemaFilter();
         var schema = new OpenApiSchema { Type = JsonSchemaType.Null };
