@@ -2,6 +2,7 @@ using Microsoft.OpenApi;
 using Soenneker.Tests.Unit;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace Soenneker.Swashbuckle.SchemaFilters.FixNullableWithoutType.Tests;
 
@@ -24,7 +25,7 @@ public sealed class FixNullableWithoutTypeSchemaFilterTests : UnitTest
     }
 
     [Test]
-    public async ValueTask Apply_should_preserve_nullability_when_adding_object_type()
+    public async ValueTask Apply_should_preserve_nullability_when_adding_object_type(CancellationToken cancellationToken)
     {
         var filter = new FixNullableWithoutTypeSchemaFilter();
         var schema = new OpenApiSchema { Type = JsonSchemaType.Null };
